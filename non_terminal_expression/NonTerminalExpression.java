@@ -11,6 +11,7 @@ public class NonTerminalExpression extends AbstractExpression{
     private String Plus = "+";
     private String Minus = "-";
     private List<AbstractExpression> list = new ArrayList<AbstractExpression>();
+    private List<String> stack = new ArrayList<String>();
 
     public int interpret(Context context){
 			AbstractExpression childExpressions;
@@ -19,12 +20,9 @@ public class NonTerminalExpression extends AbstractExpression{
 			while(!context.isEnd()){
 					token = context.getToken();
 					if(Plus.equals(token)){
-				childExpressions = new NonTerminalExpression();
-					}else if(Minus.equals(token)){
-				context.nextToken();
-				break;
+            childExpressions = new NonTerminalExpression();
 					}else{
-				childExpressions = new TerminalExpression();
+            childExpressions = new TerminalExpression();
 					}
 					resultValue += childExpressions.interpret(context);
 					list.add(childExpressions);
