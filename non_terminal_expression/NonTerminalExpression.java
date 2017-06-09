@@ -9,29 +9,26 @@ import context.*;
 public class NonTerminalExpression extends AbstractExpression{
     private int resultValue;
     private String Plus = "+";
-    private String Minus = "-";
     private List<AbstractExpression> list = new ArrayList<AbstractExpression>();
-    private List<String> stack = new ArrayList<String>();
 
     public int interpret(Context context){
-			AbstractExpression childExpressions;
-			context.nextToken();
-			String token = "";
-			while(!context.isEnd()){
-					token = context.getToken();
-					if(Plus.equals(token)){
-            childExpressions = new NonTerminalExpression();
-					}else{
-            childExpressions = new TerminalExpression();
-					}
-					resultValue += childExpressions.interpret(context);
-					list.add(childExpressions);
-			}
-			return resultValue;
+        AbstractExpression childExpressions;
+        context.nextToken();
+        String token = "";
+        while(!context.isEnd()){
+            token = context.getToken();
+            if(Plus.equals(token)){
+                childExpressions = new NonTerminalExpression();
+            }else{
+                childExpressions = new TerminalExpression();
+            }
+            resultValue += childExpressions.interpret(context);
+        }
+        return resultValue;
     }
 
     public String toString(){
-			return "+" + list.toString();
+        return "+" + list.toString();
     }
 }
 

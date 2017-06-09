@@ -14,11 +14,11 @@ public class Context{
     }
 
     public void nextToken(){
-      String token = null;
-      if( !isEnd() ){
-        token = tokens.nextToken(); // 標準の .nextToken() を呼び出す
-      }
-      currentToken = token;
+        String token = null;
+        if( !isEnd() ){
+            token = tokens.nextToken();
+        }
+        currentToken = token;
     }
 
     public boolean isEnd(){
